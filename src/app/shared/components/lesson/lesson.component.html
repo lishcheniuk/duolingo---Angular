@@ -1,0 +1,16 @@
+<div class="block__wrap">
+  <div class="block" (click)="clickHandler($event)">
+    <i [class]="['fas', lesson.icon]"></i>
+  </div>
+  <h4><ng-content></ng-content>{{ lesson.title }}</h4>
+  <div class="modal_wrap" *ngIf="visibleModal" @modal>
+    <div class="modal_lesson">
+      <button class="theory" [routerLink]="['skill', 'theory', lesson.id]">
+        Теория
+      </button>
+      <button class="practice" [routerLink]="['skill', 'practice', lesson.id]">
+        Тренировка
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="wrap">
+  <div class="container">
+    <div class="row lesson">
+      <header>
+        <button routerLink="/" class="back">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="progressM">
+          <div [style.width]="widthP"></div>
+        </div>
+        <div class="health">
+          <i
+            class="fas fa-heart"
+            *ngFor="let item of countHearts; let idx = index"
+            [style.color]="
+              idx > health ? 'rgba(150, 146, 146, 0.747)' : 'rgb(221, 8, 8)'
+            "
+          ></i>
+        </div>
+      </header>
+      <p class="text-center" *ngIf="!lessonQuestions.length; else questions">
+        В разделе нет вопросов
+      </p>
+      <ng-template #questions>
+        <main>
+          <div
+            class="col-8 mx-auto question"
+            *ngFor="
+              let question of lessonQuestions
+                | currentQuestion: currentQuestiontNumber
+            "
+            @animateQuestion
+          >
+            <h2 class="task">{{ question.task }}</h2>
+            <p>{{ question.sentence }}</p>
+            <div class="type__question" [ngSwitch]="question.type">
+              <app-select-type
+                *ngSwitchCase="'select'"
+                [answerValue]="answerValue"
+                [answerOptions]="question.answers"
+                (writeAnswer)="answerValue = $event"
+              >
+              </app-select-type>
+              <app-insert-type
+                *ngSwitchCase="'insert'"
+                [answerOptions]="question.answers"
+                (writeAnswer)="setInsertTypeAnswer($event)"
+                (editAnswer)="editInsertTypeAnswer($event)"
+                [disabledAnswers]="!isCheck"
+              >
+              </app-insert-type>
+              <app-translate-type
+                *ngSwitchCase="'translate'"
+                [answerValue]="answerValue"
+                (writeAnswer)="answerValue = $event"
+                [disabledAnswers]="!isCheck"
+              ></app-translate-type>
+            </div>
+          </div>
+        </main>
+      </ng-template>
+    </div>
+  </div>
+  <footer
+    [ngClass]="{
+      bg_success: answerColor && !isCheck,
+      bg_error: !answerColor && !isCheck
+    }"
+  >
+    <button
+      class="next"
+      [disabled]="!lessonQuestions.length"
+      (click)="nextQuestion()"
+      [class.success]="answerColor && !isCheck"
+      [class.error]="!answerColor && !isCheck"
+    >
+      Дальше
+    </button>
+    <div
+      class="answer_result"
+      *ngIf="!isCheck; else btn"
+      [style.color]="answerColor ? '#8dbc00' : '#EC0B1B'"
+    >
+      <div class="ok">
+        <i
+          class="fas"
+          [ngClass]="{ 'fa-times': !answerColor, 'fa-check': answerColor }"
+        ></i>
+      </div>
+      <h3 *ngIf="answerColor; else right">
+        {{ answerColor ? "Верно" : "" }}
+      </h3>
+      <ng-template #right>
+        <h3>
+          Правильный ответ:
+          <p>
+            {{ getQuestion.rightAnswer }}
+          </p>
+        </h3>
+      </ng-template>
+    </div>
+
+    <ng-template #btn>
+      <button
+        class="check"
+        (click)="check()"
+        [disabled]="!answerValue.trim()"
+        [class.success]="answerValue.trim()"
+      >
+        Проверить
+      </button>
+    </ng-template>
+  </footer>
+</div>

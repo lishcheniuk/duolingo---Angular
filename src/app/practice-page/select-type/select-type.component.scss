@@ -1,0 +1,36 @@
+.answer__options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .variant {
+    display: inline-flex;
+    align-items: center;
+    min-width: 300px;
+    color: #c4c2c2;
+    border: 2px solid #c4c2c2;
+    *padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+
+    span {
+      padding: 3px 10px;
+      margin: 10px 0 10px 10px;
+      font-size: 14px;
+      border: 2px solid #c4c2c2;
+      border-radius: 10px;
+    }
+    p {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    &.select,
+    &.select span {
+      border-color: #1cb0f6;
+      color: #1cb0f6;
+      background-color: #ddf4ff;
+    }
+  }
+}

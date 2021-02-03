@@ -1,0 +1,19 @@
+$grey: #e5e5e5;
+
+textarea {
+  border: 2px solid $grey;
+  resize: none;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  width: 100%;
+  min-height: 170px;
+  padding: 15px;
+
+  &::placeholder {
+    color: #bababa;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

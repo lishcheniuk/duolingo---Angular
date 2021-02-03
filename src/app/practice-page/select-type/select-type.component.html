@@ -1,0 +1,11 @@
+<div class="answer__options">
+  <div
+    class="variant"
+    *ngFor="let answer of answerOptions; let idx = index"
+    (click)="clickHandler(answer)"
+    [class.select]="answerValue === answer"
+  >
+    <span>{{ idx + 1 }}</span>
+    <p>{{ answer }}</p>
+  </div>
+</div>

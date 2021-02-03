@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+:root {
+  --default_color: rgb(182, 181, 181);
+  --height_navbar: 70px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+p,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+button:focus {
+  outline: none;
+}

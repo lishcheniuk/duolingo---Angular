@@ -1,0 +1,25 @@
+<div class="result__main">
+  <div class="field"></div>
+  <div class="field"></div>
+  <div class="result__block">
+    <button
+      class="variant"
+      *ngFor="let val of selectAnswers; let idx = index"
+      (click)="deleteAnswerBlock(idx)"
+      [disabled]="disabledAnswers"
+    >
+      {{ val }}
+    </button>
+  </div>
+</div>
+<div class="answer__options">
+  <button
+    class="variant"
+    *ngFor="let answer of answerOptions; let idx = index"
+    (click)="clickHandler(answer)"
+    [class.selected]="isSelected(answer)"
+    [disabled]="isSelected(answer) || disabledAnswers"
+  >
+    {{ answer }}
+  </button>
+</div>

@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container" (click)="visibleModalLesson = null">
+  <div class="row">
+    <div class="col-8 content">
+      <div
+        class="content-row"
+        *ngFor="let row of lessonsToRows; let rowIdx = index"
+      >
+        <app-lesson
+          *ngFor="
+            let lesson of service.lessons | lessonsFilter: rowIdx;
+            let idx = index
+          "
+          [visibleModal]="visibleModalLesson === lesson.id"
+          [lesson]="lesson"
+          (showModal)="showModalLesson(lesson.id)"
+          >{{ lessonNumber(rowIdx, idx) }}.</app-lesson
+        >
+      </div>
+    </div>
+    <div class="col-4 sidebar">
+      <div class="users">
+        <h3>Таблица лидеров</h3>
+        <ul>
+          <li>User 1</li>
+          <li>User 2</li>
+          <li>User 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

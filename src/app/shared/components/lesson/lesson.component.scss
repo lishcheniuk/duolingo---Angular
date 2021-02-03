@@ -1,0 +1,95 @@
+$yellow: #ffdf26;
+
+.block__wrap {
+  position: relative;
+  text-align: center;
+
+  .block {
+    position: relative;
+    line-height: 150px;
+    height: 150px;
+    border: 10px solid $yellow;
+    border-radius: 50%;
+    background-color: yellowgreen;
+    cursor: pointer;
+
+    i {
+      font-size: 40px;
+      color: rgb(105, 105, 104);
+    }
+
+    &:hover i {
+      color: $yellow;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      border: 10px solid #fff;
+      border-radius: 50%;
+    }
+  }
+
+  .modal_wrap {
+    position: absolute;
+    left: 50%;
+    z-index: 10;
+    bottom: 10px;
+
+    .modal_lesson {
+      position: absolute;
+      transform: translateX(-50%);
+      width: 250px;
+      height: 200px;
+      background-color: $yellow;
+      border: 2px solid var(--default_color);
+      border-radius: 10px;
+      line-height: 1;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      align-items: center;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 26px;
+        height: 26px;
+        background-color: $yellow;
+        border-left: 2px solid var(--default_color);
+        border-top: 2px solid var(--default_color);
+        position: absolute;
+        left: 50%;
+        top: -15px;
+        margin-left: -13px;
+        transform: rotate(45deg);
+      }
+
+      .theory,
+      .practice {
+        display: block;
+        border-radius: 10px;
+        text-transform: uppercase;
+        padding: 10px;
+        border: 2px solid var(--default_color);
+        border-bottom-width: 4px;
+        margin: 0 10px;
+      }
+
+      .theory {
+        color: #fff;
+        background-color: inherit;
+        grid-row: 2/3;
+      }
+
+      .practice {
+        color: $yellow;
+        background-color: #fff;
+        grid-row: 3/-1;
+      }
+    }
+  }
+}
